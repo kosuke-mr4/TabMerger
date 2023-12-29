@@ -1,3 +1,3 @@
 ## TabMerger
 
-Extension for merging tabs in Google Chrome
+Extension for merging tabs in Google Chrome.
