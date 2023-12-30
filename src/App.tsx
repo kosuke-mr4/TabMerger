@@ -37,27 +37,68 @@ function App() {
       });
   };
 
+  function ArrowRightIcon(props: React.SVGProps<SVGSVGElement>) {
+    return (
+      <svg
+        {...props}
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg>
+    );
+  }
+
   return (
     <div>
-      <select
-        value={selectedWindow1}
-        onChange={(e) => setSelectedWindow1(e.target.value)}
-      >
-        {windows.map((w) => (
-          <option value={w.id}>Window {w.id}</option>
-        ))}
-      </select>
-
-      <select
-        value={selectedWindow2}
-        onChange={(e) => setSelectedWindow2(e.target.value)}
-      >
-        {windows.map((w) => (
-          <option value={w.id}>Window {w.id}</option>
-        ))}
-      </select>
-
-      <button onClick={mergeTabs}>Merge Tabs</button>
+      <div className="max-w-2xl mx-auto p-8">
+        <div className="flex justify-between items-start">
+          <div className="flex flex-col items-center">
+            <h2 className="text-lg font-semibold mb-4">マージ元のタブ</h2>
+            <select
+              value={selectedWindow1}
+              onChange={(e) => setSelectedWindow1(e.target.value)}
+            >
+              {windows.map((w) => (
+                <option value={w.id}>Window {w.id}</option>
+              ))}
+            </select>
+            <div className="border p-4">
+              <p>そのタブが開いているページの画像</p>
+            </div>
+            <p className="mt-2 text-sm">そのタブが開いているページのタイトル</p>
+          </div>
+          <ArrowRightIcon className="mx-4 my-2 text-gray-600 w-6 h-6" />
+          <div className="flex flex-col items-center">
+            <h2 className="text-lg font-semibold mb-4">マージ先のタブ</h2>
+            <select
+              value={selectedWindow2}
+              onChange={(e) => setSelectedWindow2(e.target.value)}
+            >
+              {windows.map((w) => (
+                <option value={w.id}>Window {w.id}</option>
+              ))}
+            </select>
+            <div className="border p-4">
+              <p>そのタブが開いているページの画像</p>
+            </div>
+            <p className="mt-2 text-sm">そのタブが開いているページのタイトル</p>
+          </div>
+        </div>
+        <div className="mt-8 flex justify-center">
+          <button className="px-6 py-2" onClick={mergeTabs}>
+            Merge Tabs
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
