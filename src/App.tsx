@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 function App() {
   const [windows, setWindows] = useState<chrome.windows.Window[]>([]);
@@ -57,7 +58,11 @@ function App() {
         ))}
       </select>
 
-      <button onClick={mergeTabs}>Merge Tabs</button>
+      <div className="mt-8 flex justify-center">
+        <Button className="px-6 py-2" onClick={mergeTabs}>
+          Merge Tabs
+        </Button>
+      </div>
     </div>
   );
 }
