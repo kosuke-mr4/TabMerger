@@ -50,6 +50,7 @@ function App() {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
+        style={{ transform: "scale(1.5) rotate(180deg)" }}
       >
         <path d="M5 12h14" />
         <path d="m12 5 7 7-7 7" />
@@ -57,12 +58,40 @@ function App() {
     );
   }
 
+  function getActiveTabTitle(windowId: string) {
+    let activeTabTitle = "";
+    windows.forEach((w) => {
+      if (w.id === Number(windowId)) {
+        w.tabs?.forEach((t) => {
+          if (t.active) {
+            activeTabTitle = t.title || "";
+          }
+        });
+      }
+    });
+    return activeTabTitle;
+  }
+
+  function getActiveTabImage(windowId: string) {
+    let activeTabImage = "";
+    windows.forEach((w) => {
+      if (w.id === Number(windowId)) {
+        w.tabs?.forEach((t) => {
+          if (t.active) {
+            activeTabImage = t.favIconUrl || "";
+          }
+        });
+      }
+    });
+    return activeTabImage;
+  }
+
   return (
     <div>
       <div className="max-w-2xl mx-auto p-8">
         <div className="flex justify-between items-start">
           <div className="flex flex-col items-center">
-            <h2 className="text-lg font-semibold mb-4">マージ元のタブ</h2>
+            <h2 className="text-lg font-semibold mb-4">マージ先</h2>
             <select
               value={selectedWindow1}
               onChange={(e) => setSelectedWindow1(e.target.value)}
@@ -71,14 +100,21 @@ function App() {
                 <option value={w.id}>Window {w.id}</option>
               ))}
             </select>
-            <div className="border p-4">
+            {/* <div className="border p-4">
               <p>そのタブが開いているページの画像</p>
+            </div> */}
+            <div className="flex mt-2">
+              <img
+                src={getActiveTabImage(selectedWindow1)}
+                alt=" "
+                className="h-5 w-auto m-0.5	"
+              />
+              <p className="text-sm">{getActiveTabTitle(selectedWindow1)}</p>
             </div>
-            <p className="mt-2 text-sm">そのタブが開いているページのタイトル</p>
           </div>
           <ArrowRightIcon className="mx-4 my-2 text-gray-600 w-6 h-6" />
           <div className="flex flex-col items-center">
-            <h2 className="text-lg font-semibold mb-4">マージ先のタブ</h2>
+            <h2 className="text-lg font-semibold mb-4">マージ元</h2>
             <select
               value={selectedWindow2}
               onChange={(e) => setSelectedWindow2(e.target.value)}
@@ -87,14 +123,29 @@ function App() {
                 <option value={w.id}>Window {w.id}</option>
               ))}
             </select>
-            <div className="border p-4">
+            {/* <div className="border p-4">
               <p>そのタブが開いているページの画像</p>
+            </div> */}
+            <div className="flex mt-2">
+              <img
+                src={getActiveTabImage(selectedWindow2)}
+                alt=" "
+                className="h-5 w-auto m-0.5	"
+              />
+              <p className="text-sm">{getActiveTabTitle(selectedWindow2)}</p>
             </div>
-            <p className="mt-2 text-sm">そのタブが開いているページのタイトル</p>
           </div>
         </div>
         <div className="mt-8 flex justify-center">
-          <button className="px-6 py-2" onClick={mergeTabs}>
+          <button
+            className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
+              selectedWindow1 === selectedWindow2
+                ? "opacity-50 cursor-not-allowed"
+                : ""
+            }`}
+            onClick={mergeTabs}
+            disabled={selectedWindow1 === selectedWindow2}
+          >
             Merge Tabs
           </button>
         </div>

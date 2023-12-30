@@ -7,7 +7,7 @@
     "default_icon": "icons/icon128.png",
     "default_popup": "index.html"
   },
-  "permissions": ["scripting", "tabs", "activeTab"],
+  "permissions": ["tabs", "activeTab", "<all_urls>"],
   "host_permissions": ["https://*/*", "http://*/*"],
   "icons": {
     "128": "icons/icon128.png"
