@@ -100,14 +100,12 @@ function App() {
                 <option value={w.id}>Window {w.id}</option>
               ))}
             </select>
-            {/* <div className="border p-4">
-              <p>そのタブが開いているページの画像</p>
-            </div> */}
+
             <div className="flex mt-2">
               <img
                 src={getActiveTabImage(selectedWindow1)}
                 alt=" "
-                className="h-5 w-auto m-0.5	"
+                className="h-5 w-auto m-0.5	drop-shadow-xl mr-1"
               />
               <p className="text-sm">{getActiveTabTitle(selectedWindow1)}</p>
             </div>
@@ -123,14 +121,12 @@ function App() {
                 <option value={w.id}>Window {w.id}</option>
               ))}
             </select>
-            {/* <div className="border p-4">
-              <p>そのタブが開いているページの画像</p>
-            </div> */}
+
             <div className="flex mt-2">
               <img
                 src={getActiveTabImage(selectedWindow2)}
                 alt=" "
-                className="h-5 w-auto m-0.5	"
+                className="h-5 w-auto m-0.5	drop-shadow-xl mr-1"
               />
               <p className="text-sm">{getActiveTabTitle(selectedWindow2)}</p>
             </div>
