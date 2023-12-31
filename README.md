@@ -1,9 +1,8 @@
 ## TabMerger
 
 Extension for merging tabs in Google Chrome.
-_WIP : Not yet designed._
 
-###　installation
+### installation
 
 ```
 npm install
